@@ -1,4 +1,5 @@
 import product from '@/public/product1.webp'
+import NewAtImage from '@/public/newAt.webp'
 
 
 export const seaonalRefresh = [
@@ -132,6 +133,147 @@ export const seaonalRefresh = [
     },  {
         id : 22,
         image : product,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },
+
+]
+
+
+
+
+export const newAt = [
+    {
+        id : 1,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },
+      {
+        id : 2,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 3,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 4,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 5,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 6,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 7,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 8,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 9,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 10,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 11,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 12,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 13,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 14,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 15,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 16,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 17,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 18,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 19,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 20,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 21,
+        image : NewAtImage,
+        name : 'Asics GEL-1130',
+        category : "Women Shoes",
+        price : 89.99
+    },  {
+        id : 22,
+        image : NewAtImage,
         name : 'Asics GEL-1130',
         category : "Women Shoes",
         price : 89.99

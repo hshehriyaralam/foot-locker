@@ -99,8 +99,7 @@ const HeroCarousal = () => {
                lg:items-start  lg:justify-start    items-center   justify-center  gap-4'
               >
               { sliderData[current].heading && (
-                <p className="  text-[30px]  lg:text-[50px]   font-extrabold  leading-[1] transition-all duration-300  max-w-[400px]  font-mono
-                ">
+                <p className="text-[30px]  lg:text-[50px]   font-extrabold  leading-[1] transition-all duration-300  max-w-[400px]  font-mono">
                 {sliderData[current].heading}
               </p>
               )

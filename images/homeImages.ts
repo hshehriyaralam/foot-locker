@@ -5,6 +5,12 @@ import dekstop_three from  "@/public/hero/hero-dekstop-three.webp"
 import mobile_one from  "@/public/hero/hero-mobile-one.webp"
 import mobile_two from  "@/public/hero/hero-mobile-two.webp"
 import mobile_three from  "@/public/hero/hero-mobile-three.webp"
+import overView1 from  "@/public/overview-2.webp"
+import overView2 from  "@/public/overview-1.webp"
+import overView3 from  "@/public/22222222222222222222222222222.webp"
+import bannerImage from '@/public/banner.webp'
+
+
 
 
 
@@ -16,5 +22,9 @@ export {
     dekstop_three,
     mobile_one,
     mobile_two,
-    mobile_three
+    mobile_three,
+    overView1,
+    overView2,
+    overView3,
+    bannerImage,
 }

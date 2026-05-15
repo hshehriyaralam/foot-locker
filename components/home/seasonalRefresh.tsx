@@ -4,12 +4,13 @@ import { seaonalRefresh } from '@/data/productData'
 
 const SeasnolRefresh = () => {
   return (
-    <div  className='w-full  p-4 mx-auto  px-4  py'>
-        <ProductLis  
+    <section className='w-full px-4 py-8 lg:px-10  mx-auto  '>
+      <ProductLis
         data={seaonalRefresh}
-        heading={'Seasonal Refresh'} />
-    </div>
+        heading='Seasonal Refresh'
+      />
+    </section>
   )
 }
 
-export default  React.memo(SeasnolRefresh) 
+export default React.memo(SeasnolRefresh)
