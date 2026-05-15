@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "The Heart of Sneakers | Foot Locker",
   description: "The Heart of Sneakers | Foot Locker",
+  icons : '/logo-crop.svg'
 };
 
 export default function RootLayout({

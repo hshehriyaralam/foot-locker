@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -5,6 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-maven: 'Maven Pro', sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -127,4 +130,32 @@
   html {
     @apply font-sans;
   }
+}
+
+
+
+
+* {
+  scrollbar-width: thin;          
+  scrollbar-color: #0E1111 #fff;  
+}
+
+::-webkit-scrollbar {
+  width: 10px;         
+  height: 10px;             
+}
+
+::-webkit-scrollbar-track {
+  background: #0E1111;  
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0E1111;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0E1111;   
 }
