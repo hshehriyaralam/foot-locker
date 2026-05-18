@@ -12,6 +12,13 @@ import bannerImage from '@/public/banner.webp'
 import fb from '@/public/footer/fb.svg'
 import insta from '@/public/footer/insta.svg'
 import tiktok from '@/public/footer/tiktok.svg'
+import CatProduct1 from "@/public/products/topPorduct1.webp"
+import CatProduct2 from "@/public/products/topPorduct2.webp"
+import CatProduct3 from "@/public/products/topPorduct3.webp"
+import CatProduct4 from "@/public/products/topPorduct4.webp"
+import CatProduct5 from "@/public/products/topPorduct5.webp"
+import CatProduct6 from "@/public/products/topPorduct6.webp"
+
 
 
 
@@ -32,5 +39,11 @@ export {
     bannerImage,
     fb,
     insta,
-    tiktok
+    tiktok,
+    CatProduct1,
+    CatProduct2,
+    CatProduct3,
+    CatProduct4,
+    CatProduct5,
+    CatProduct6,
 }

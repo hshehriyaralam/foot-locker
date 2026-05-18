@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import { Button } from "@/components/ui/button";
 import { logo } from "@/images/homeImages";
 import { useModalStore } from "@/store/store";
@@ -8,32 +7,26 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
-    const toggleModal = useModalStore((state: any) => state.toggleModal);
-  
-  
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data:any) => {
-    const firstName = data?.firstName
-    const lastName = data?.lastName
-    const email = data?.email
-    const mobileNumber = data?.mobileNumber
-    const postalCode = data?.postalCode
-    const password = data?.password
-    console.log(
-      firstName,
-      lastName,
-      email,
-      mobileNumber,
-      postalCode,
-      password
-    )
-  }
-    
-    
+  const toggleModal = useModalStore((state: any) => state.toggleModal);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data: any) => {
+    const firstName = data?.firstName;
+    const lastName = data?.lastName;
+    const email = data?.email;
+    const mobileNumber = data?.mobileNumber;
+    const postalCode = data?.postalCode;
+    const password = data?.password;
+    console.log(firstName, lastName, email, mobileNumber, postalCode, password);
+  };
 
 
-  
-  
+  const inputStyling = `w-full  bg-transparent  border border-gray-500   hover:bg-white  p-3`
+
   return (
     <div className="w-full min-h-screen font-maven ">
       <div className="w-full bg-gray-100  flex flex-col items-center justify-center   h-40">
@@ -46,56 +39,53 @@ const Register = () => {
         </div>
       </div>
 
-      <form 
-      onSubmit={handleSubmit(onSubmit)}
-      className="p-4  mx-auto  ">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-4  mx-auto  ">
         <div className="max-w-[70%]  mx-auto   flex flex-col items-start justify-center gap-8  mt-6">
           <div className="w-full flex items-center justify-center gap-4">
             <input
-             {...register("firstName")}
+              {...register("firstName")}
               required
-              className="w-full  bg-transparent  border border-gray-500   hover:bg-white  p-2.5"
+              className={`${inputStyling}`}
               type="text"
               placeholder="First Name*"
             />
             <input
               required
-             {...register("lastName")}
-              className="w-full  bg-transparent  border border-gray-500   hover:bg-white  p-2.5"
+              {...register("lastName")}
+               className={`${inputStyling}`}
               type="text"
               placeholder="Last Name*"
             />
           </div>
 
           <input
-             {...register("email")}
+            {...register("email")}
             required
-            className="w-full  bg-transparent  border border-gray-500   hover:bg-white  p-2.5"
+            className={`${inputStyling}`}
             type="email"
             placeholder="Email Address*"
           />
 
           <input
-             {...register("mobileNumber")}
+            {...register("mobileNumber")}
             required
-            className="w-full  bg-transparent  border border-gray-500  
-                 hover:bg-white  p-2.5 "
+            className={`${inputStyling}`}
             type="number"
             placeholder="Mobile Number*"
           />
 
           <input
-             {...register("postalCode")}
+            {...register("postalCode")}
             required
-            className="w-full  bg-transparent  border border-gray-500   hover:bg-white  p-2.5"
+            className={`${inputStyling}`}
             type="text"
             placeholder="Postal Code*"
           />
 
           <input
-             {...register("password")}
+            {...register("password")}
             required
-            className="w-full  bg-transparent  border border-gray-500   hover:bg-white  p-2.5"
+            className={`${inputStyling}`}
             type="password"
             placeholder="Password*"
           />
@@ -126,10 +116,13 @@ const Register = () => {
 
             <p className="text-sm font-bold">
               FLX Memeber?
-              <Button 
-              type="button"
-              onClick={toggleModal}
-              className="underline  font-medium    cursor-pointer  bg-transparent  text-black">Sign In</Button>
+              <Button
+                type="button"
+                onClick={toggleModal}
+                className="underline  font-medium    cursor-pointer  bg-transparent  text-black"
+              >
+                Sign In
+              </Button>
             </p>
             <p className="text-sm text-gray-800 ">
               Foot Locker Inc. Family of Brands
