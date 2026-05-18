@@ -2,13 +2,14 @@ import React from 'react'
 import { bannerImage } from '@/images/homeImages'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
+import ShopNowBtn from '../common/button'
 
 
 const Banner = () => {
   return (
     <div
-    className='w-full mx-auto relative my-4 '>
-        <div  className='relative  z-40'>
+    className='w-full  relative '>
+        <div  className='relative  z-40  '>
         <Image
         className=''
         src={bannerImage}
@@ -19,25 +20,34 @@ const Banner = () => {
 
         <div  className='hidden lg:block absolute lg:bottom-60  lg:left-10 z-50'>
             <h2  className='text-[30px]  lg:text-[46px]   font-extrabold  leading-[1] transition-all duration-300  max-w-[400px]  font-mono uppercase text-white'>CONVERSE SHAI</h2>
-
-            {/* buttons */}
             <div  className='flex items-center gap-2  mt-2'>
-                  <button
+                  {/* <button
               className='bg-gray-200/90 hover:bg-black    text-black hover:text-white  
                uppercase text-[14px]   transition duration-300   cursor-pointer font-medium  font-mono
                lg:w-26   w-30  flex  items-center  justify-center gap-2  group relative'>
                 SHOP NOW 
                 <ArrowRight  className='text-black group-hover:text-white w-5  ' />
-              </button>
+              </button> */}
+              <ShopNowBtn />
 
-
+                 <div>
                 <button
-              className='bg-gray-200/90 hover:bg-black    text-black hover:text-white  
-               uppercase text-[14px]   transition duration-300   cursor-pointer font-medium  font-mono
-               lg:w-40   w-30  flex  items-center  justify-center gap-2  group relative  uppercase'>
-                FIND OUT MORE
-                <ArrowRight  className='text-black group-hover:text-white w-5  ' />
-              </button>
+                  className=" group relative overflow-hidden uppercase text-[14px] font-medium font-mono
+                    w-30 lg:w-38 h-8 flex items-center justify-center gap-2   cursor-pointer
+                    text-black transition-colors duration-300  bg-gray-200   ">
+                  <span
+                    className=" absolute inset-0 bg-black translate-y-full group-hover:translate-y-0
+                      transition-transform duration-300 ease-out"/>
+
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                    FIND OUT MORE
+                  </span>
+
+                  <ArrowRight
+                    className=" relative z-10 w-5  text-black group-hover:text-white transition-colors duration-300"
+                  />
+                </button>
+              </div>
             </div>
         </div>
     </div>

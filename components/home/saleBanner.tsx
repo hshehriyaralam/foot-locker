@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
+import ShopNowBtn from '../common/button'
 
 const SaleBanner = () => {
   return (
@@ -13,15 +14,7 @@ const SaleBanner = () => {
             <p  className='text-white  lg:text-[16px]  text-[14px] '>First order only. Exclusive apply.</p>
         </div>
 
-            <div>
-               <button
-              className='bg-gray-200/90 hover:bg-black    text-black hover:text-white  
-               uppercase text-[14px]   transition duration-300   cursor-pointer font-medium  font-mono
-               lg:w-26   w-30  flex  items-center  justify-center gap-2  group relative'>
-                SHOP NOW 
-                <ArrowRight  className='text-black group-hover:text-white w-5  ' />
-              </button>
-          </div>
+          <ShopNowBtn />
     </div>
     </section>
 

@@ -1,29 +1,34 @@
-"use client"
-
-import {CircleUser, Handbag,Menu,Search, X} from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import React, { useState } from "react"
-import { Button } from "../ui/button"
-import { logo } from "@/images/homeImages"
+"use client";
+import { useModalStore } from "@/store/store";
+import { CircleUser, Handbag, Menu, Search, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
+import { Button } from "../ui/button";
+import { logo } from "@/images/homeImages";
+import LoginModal from "../common/loginModal";
 
 const Navbar = () => {
+  const modal = useModalStore((state: any) => state.modal);
+  const toggleModal = useModalStore((state: any) => state.toggleModal);
 
-  const [mobileMenu, setMobileMenu] = useState(false)
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   const navLinks = [
     {
       id: 1,
       text: "Men",
       link: "/men",
-      categories: [{
+      categories: [
+        {
           title: "Shoes",
-          items: ["Nike", "Adidas", "Jordan", "Puma"]
-        },{
+          items: ["Nike", "Adidas", "Jordan", "Puma"],
+        },
+        {
           title: "Clothing",
-          items: ["Hoodies", "T-Shirts", "Shorts"]
-        }
-      ]
+          items: ["Hoodies", "T-Shirts", "Shorts"],
+        },
+      ],
     },
 
     {
@@ -33,9 +38,9 @@ const Navbar = () => {
       categories: [
         {
           title: "Trending",
-          items: ["Sneakers", "Running", "Lifestyle"]
-        }
-      ]
+          items: ["Sneakers", "Running", "Lifestyle"],
+        },
+      ],
     },
 
     {
@@ -45,59 +50,53 @@ const Navbar = () => {
       categories: [
         {
           title: "Popular",
-          items: ["School Shoes", "Sports", "Slides"]
-        }
-      ]
+          items: ["School Shoes", "Sports", "Slides"],
+        },
+      ],
     },
-     {
+    {
       id: 4,
       text: "NewIn",
-      link: "/",
+      link: "/newIn",
     },
-     {
+    {
       id: 5,
       text: "Sale",
-      link: "/",
+      link: "/sale",
     },
-  ]
+  ];
 
   return (
     <nav className="w-full border-b  font-maven">
       <div className="flex items-center justify-between lg:px-8  px-4 py-4 font-maven">
-
         {/* Left */}
         <div className="flex items-center lg:gap-4  gap-2">
           <Button
             onClick={() => setMobileMenu(true)}
             className="lg:hidden   bg-transparent "
           >
-            <Menu   className="text-black   w-8 h-8"  />
+            <Menu className="text-black   w-8 h-8" />
           </Button>
-      <Link  
-          className="hidden lg:block"
-          href={'/'}>
-          <Image
-            src={logo}
-            alt="logo"
-            width={170}
-            height={170}
-            className="object-contain"
+          <Link className="hidden lg:block" href={"/"}>
+            <Image
+              src={logo}
+              alt="logo"
+              width={170}
+              height={170}
+              className="object-contain"
             />
-            </Link>
+          </Link>
         </div>
 
-        
-          <Link  
-          className="lg:hidden block"
-          href={'/'}>
+        <Link className="lg:hidden block" href={"/"}>
           <Image
             src={logo}
             alt="logo"
             width={170}
             height={170}
             className="object-contain"
-            />
-            </Link>
+          />
+        </Link>
 
         <div className="hidden lg:flex items-center border rounded px-4 py-2 w-[400px] lg:w-[550px]">
           <input
@@ -110,139 +109,118 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center lg:gap-6">
-
-          <div className="flex items-center gap-2 cursor-pointer  hover:bg-gray-100  py-0.5   px-4 ">
+          <div
+            onClick={toggleModal}
+            className="flex items-center gap-2 cursor-pointer  hover:bg-gray-100  py-0.5   px-4 "
+          >
             <CircleUser className="w-6 h-6" />
             <p className="hidden lg:block  text-sm font-medium   ">
               Sign In | Join FLX
             </p>
           </div>
 
-          <div className="relative cursor-pointer">
+          <Link href={"/cart"} className="relative cursor-pointer">
             <Handbag className="w-6 h-6" />
 
-            <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full
-           w-4 h-4 flex items-center justify-center  text-[10px]">
+            <span
+              className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full
+           w-4 h-4 flex items-center justify-center  text-[10px]"
+            >
               0
             </span>
-          </div>
+          </Link>
         </div>
       </div>
 
       <div className="hidden lg:flex items-center justify-center gap-10 mb-2 relative">
-        {
-          navLinks.map((link) => (
-            <div
-              key={link.id}
-              className="group">
+        {navLinks.map((link) => (
+          <div key={link.id} className="group">
+            <Link
+              href={link.link}
+              className="font-semibold text-[#0E1111]  text-md relative   font-maven"
+            >
+              {link.text}
+              <div className="h-[2px] text-[#0E1111] scale-x-0 group-hover:scale-x-100 transition duration-300 origin-left  " />
+            </Link>
 
-              <Link
-                href={link.link}
-                className="font-semibold text-[#0E1111]  text-md relative   font-maven"
+            {/* drop down div */}
+
+            {link.categories && (
+              <div
+                className={`absolute left-0 top-full w-full bg-white shadow-lg opacity-0 invisible group-hover:opacity-100  group-hover:visible transition-all duration-300 z-50`}
               >
-                {link.text}
-                <div className="h-[2px] text-[#0E1111] scale-x-0 group-hover:scale-x-100 transition duration-300 origin-left  " />
-              </Link>
-
-              {/* drop down div */}
-
-              {
-                link.categories && (
-  <div className={`absolute left-0 top-full w-full bg-white shadow-lg opacity-0 invisible group-hover:opacity-100  group-hover:visible transition-all duration-300 z-50`}>
                 <div className="max-w-7xl mx-auto grid grid-cols-4 gap-10 p-10">
-                  { link.categories?.map((category, index) => (
-                      <div key={index}>
-                        <h3 className="font-bold mb-4">
-                          {category.title}
-                        </h3>
-                        <div className="flex flex-col gap-3">
-                          { category.items.map((item, i) => (
-                              <Link
-                                key={i}
-                                href="/"
-                                className="text-gray-600 hover:text-black"
-                              >
-                                {item}
-                              </Link>
-                            ))}
-                        </div>
+                  {link.categories?.map((category, index) => (
+                    <div key={index}>
+                      <h3 className="font-bold mb-4">{category.title}</h3>
+                      <div className="flex flex-col gap-3">
+                        {category.items.map((item, i) => (
+                          <Link
+                            key={i}
+                            href="/"
+                            className="text-gray-600 hover:text-black"
+                          >
+                            {item}
+                          </Link>
+                        ))}
                       </div>
-                    ))
-                  }</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-                )              }
-            
-            </div>
-          ))
-        }
-
+            )}
+          </div>
+        ))}
       </div>
 
-
-{/* mobile side bar */}
+      {/* mobile side bar */}
       <div
         className={`fixed top-0 left-0 h-screen w-[300px] bg-white z-[999] transition-all duration-300
-           ${
-          mobileMenu ? "translate-x-0" : "-translate-x-full"
-        }`}
+           ${mobileMenu ? "translate-x-0" : "-translate-x-full"}`}
       >
-
         <div className="flex items-center justify-between p-4 border-b">
-
-          <h2 className="font-bold text-xl">
-            Menu
-          </h2>
+          <h2 className="font-bold text-xl">Menu</h2>
 
           <Button
-          className="bg-transparent  "
+            className="bg-transparent  "
             onClick={() => setMobileMenu(false)}
           >
-            <X   className="text-black  w-5 h-5 "/>
+            <X className="text-black  w-5 h-5 " />
           </Button>
         </div>
 
         <div className="flex flex-col p-4 gap-6">
+          {navLinks.map((link) => (
+            <div key={link.id}>
+              <Link href={link.link} className="font-semibold text-lg">
+                {link.text}
+              </Link>
 
-          {
-            navLinks.map((link) => (
-              <div key={link.id}>
+              <div className="ml-3 mt-3 flex flex-col gap-2">
+                {link.categories?.map((category, i) => (
+                  <div key={i}>
+                    <h4 className="font-medium">{category.title}</h4>
 
-                <Link
-                  href={link.link}
-                  className="font-semibold text-lg"
-                >
-                  {link.text}
-                </Link>
-
-                <div className="ml-3 mt-3 flex flex-col gap-2">
-
-                  {link.categories?.map((category, i) => (
-                      <div key={i}>
-
-                        <h4 className="font-medium">
-                          {category.title}
-                        </h4>
-
-                        {
-                          category.items.map((item, idx) => (
-                            <p
-                              key={idx}
-                              className="text-sm text-gray-500 py-1"
-                            >
-                              {item}
-                            </p>
-                          ))
-                        }
-                      </div>
-                    ))
-                  }
-                </div>
+                    {category.items.map((item, idx) => (
+                      <p key={idx} className="text-sm text-gray-500 py-1">
+                        {item}
+                      </p>
+                    ))}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
-    </nav>
-  )
-}
 
-export default React.memo(Navbar)
+
+
+
+     {/* Login Modal */}
+      {modal &&  <LoginModal />}
+    </nav>
+  );
+};
+
+export default React.memo(Navbar);

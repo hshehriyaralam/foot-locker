@@ -8,19 +8,18 @@ import Overview from '../home/overview'
 import NewAt from '../home/newAt'
 import SaleBanner from '../home/saleBanner'
 import Banner from '../home/banner'
+import Footer from './footer'
 
 const Outlet = () => {
   return (
     <div>
-      <TopBanner  />
-      <Navbar />
-      <HeroBanner />
       <HeroCarousal />
       <SeasonalRefresh />
-      <Overview />
-      <NewAt  />
+      {/* <Overview /> */}
       <SaleBanner />
+      <NewAt  />
       <Banner />
+      <Footer/>
     </div>
   )
 }

@@ -9,6 +9,9 @@ import overView1 from  "@/public/overview-2.webp"
 import overView2 from  "@/public/overview-1.webp"
 import overView3 from  "@/public/22222222222222222222222222222.webp"
 import bannerImage from '@/public/banner.webp'
+import fb from '@/public/footer/fb.svg'
+import insta from '@/public/footer/insta.svg'
+import tiktok from '@/public/footer/tiktok.svg'
 
 
 
@@ -27,4 +30,7 @@ export {
     overView2,
     overView3,
     bannerImage,
+    fb,
+    insta,
+    tiktok
 }
