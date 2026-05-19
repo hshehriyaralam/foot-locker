@@ -1,5 +1,5 @@
 "use client"
-import { logo } from '@/images/homeImages'
+import { logo } from '@/images/Images'
 import { useModalStore } from '@/store/store'
 import {  X } from 'lucide-react'
 import Image from 'next/image'

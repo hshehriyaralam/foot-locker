@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { logo } from "@/images/homeImages";
+import { logo } from "@/images/Images";
 import { useModalStore } from "@/store/store";
 import Image from "next/image";
 import React from "react";
@@ -25,7 +25,7 @@ const Register = () => {
   };
 
 
-  const inputStyling = `w-full  bg-transparent  border border-gray-500   hover:bg-white  p-3`
+  const inputStyling = `w-full  bg-gray-50  border border-gray-500   hover:bg-white  p-3  `
 
   return (
     <div className="w-full min-h-screen font-maven ">

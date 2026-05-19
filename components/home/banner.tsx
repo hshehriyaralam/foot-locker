@@ -1,5 +1,5 @@
 import React from 'react'
-import { bannerImage } from '@/images/homeImages'
+import { bannerImage } from '@/images/Images'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import ShopNowBtn from '../common/button'
@@ -11,7 +11,7 @@ const Banner = () => {
     className='w-full  relative '>
         <div  className='relative  z-40  '>
         <Image
-        className=''
+        className='w-full h-full'
         src={bannerImage}
         alt='banner'
         />  
@@ -21,13 +21,6 @@ const Banner = () => {
         <div  className='hidden lg:block absolute lg:bottom-60  lg:left-10 z-50'>
             <h2  className='text-[30px]  lg:text-[46px]   font-extrabold  leading-[1] transition-all duration-300  max-w-[400px]  font-mono uppercase text-white'>CONVERSE SHAI</h2>
             <div  className='flex items-center gap-2  mt-2'>
-                  {/* <button
-              className='bg-gray-200/90 hover:bg-black    text-black hover:text-white  
-               uppercase text-[14px]   transition duration-300   cursor-pointer font-medium  font-mono
-               lg:w-26   w-30  flex  items-center  justify-center gap-2  group relative'>
-                SHOP NOW 
-                <ArrowRight  className='text-black group-hover:text-white w-5  ' />
-              </button> */}
               <ShopNowBtn />
 
                  <div>

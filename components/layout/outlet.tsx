@@ -19,7 +19,6 @@ const Outlet = () => {
       <SaleBanner />
       <NewAt  />
       <Banner />
-      <Footer/>
     </div>
   )
 }

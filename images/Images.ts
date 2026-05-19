@@ -18,6 +18,17 @@ import CatProduct3 from "@/public/products/topPorduct3.webp"
 import CatProduct4 from "@/public/products/topPorduct4.webp"
 import CatProduct5 from "@/public/products/topPorduct5.webp"
 import CatProduct6 from "@/public/products/topPorduct6.webp"
+import PaypalText from "@/public/cart/paypalText.png"
+import PayOne from "@/public/cart/ic_amex.webp"
+import PayTwo from "@/public/cart/paypal.webp"
+import PayThre from "@/public/cart/ic_visa.png"
+import PayFour from "@/public/cart/ic_mastercard.webp"
+import DetailOne from '@/public/productDetails/detailOne.webp'
+import DetailTwo from '@/public/productDetails/detailTwo.webp'
+import DetailThree from '@/public/productDetails/detailThree.webp'
+import DetailFour from '@/public/productDetails/detailFour.webp'
+import DetailFive from '@/public/productDetails/detailFive.webp'
+import DetailSix from '@/public/productDetails/detailSix.webp'
 
 
 
@@ -46,4 +57,15 @@ export {
     CatProduct4,
     CatProduct5,
     CatProduct6,
+    PaypalText,
+    PayOne,
+    PayTwo,
+    PayThre,
+    PayFour,
+    DetailOne,
+    DetailTwo,
+    DetailThree,
+    DetailFour,
+    DetailFive,
+    DetailSix
 }

@@ -1,4 +1,4 @@
-import { overView1, overView2, overView3 } from '@/images/homeImages'
+import { overView1, overView2, overView3 } from '@/images/Images'
 
 
 export const overviewData = [

@@ -5,7 +5,7 @@ import {CatProduct1,
     CatProduct3,
     CatProduct4,
     CatProduct5,
-    CatProduct6} from "@/images/homeImages"
+    CatProduct6} from "@/images/Images"
 
 export  const  topProductdData = [
     {

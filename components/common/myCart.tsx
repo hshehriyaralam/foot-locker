@@ -1,4 +1,4 @@
-import { CatProduct1 } from '@/images/homeImages'
+import { CatProduct1 } from '@/images/Images'
 import Image from 'next/image'
 
 const myCart = () => {

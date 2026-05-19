@@ -1,104 +1,102 @@
-"use client"
-import React from 'react'
-import product from '@/public/product1.webp'
-import Image from 'next/image'
-import { Star } from 'lucide-react'
-import { Plus } from 'lucide-react'
+ "use client"
+import React, { useState } from "react"
+import Image from "next/image"
+import {
+  Plus,
+  Star,
+} from "lucide-react"
 
+import product from "@/public/product1.webp"
+import productTwo from "@/public/newAt.webp"
 
-const CegoryProductCard = () => {
+const images = [
+  product,
+  productTwo,
+  product,
+  productTwo,
+]
+
+const CategoryProductCard = () => {
+  const [selectedImage, setSelectedImage] =
+    useState(images[0])
+
   return (
-    <div  className='w-full font-maven  flex items-center justify-center' >
-        <div  className='w-[270px] hover:border  hover:border-black  min-h-[450px]  mt-10 
-         cursor-pointer  hover:shadow-[0px_3px_0px_0px_#000]
-        '>
-            
-
-            {/* Image div */}
-            <div  className=''>
-            <div  className='p-2  bg-gray-100 '>
-                <Image 
-                src={product}
-                alt='Product-Image'
-                />
-
-                <div
-                // onClick={}
-                className='bg-black  w-6 h-6 rounded-full  flex items-center px-0.5
-                  relative  right-0   top-0'>
-                <Plus   className='text-white/80   w-5 h-5 '/>
-                </div> 
-            </div>
-            {/* slide Images */}
-            <div  className='w-full cursor-pointer min-h-4 flex items-center px-3 gap-x-2'>
-                <div  className='hover:border-b-2 border-black   transition duration-500 '>
-                <Image 
-                className='w-10 h-10'
-                src={product}
-                alt='other-images'
-                /> 
-                </div>
-            
-                <div  className='hover:border-b-2 border-black  transition duration-500'>
-                <Image 
-                className='w-10 h-10'
-                
-                src={product}
-                alt='other-images'
-                /> 
-                </div>
-
-               <div  className='hover:border-b-2 border-black transition duration-500 '>
-
-                <Image 
-                className='w-10 h-10'
-                src={product}
-                alt='other-images'
-                /> 
-                </div>
-
-
-
-               <div  className='hover:border-b-2 border-black  transition duration-500'>
-                <Image 
-                className='w-10 h-10'
-                
-                src={product}
-                alt='other-images'
-                /> 
-                </div>
-
-                <p  className='text-gray-900 text-sm  mt-1 mx-2'>+17</p>
-            </div>
-                </div>
-
-
-
-            {/* Text div */}
-            <div className='px-4      flex flex-col gap-1'>
-                <p className='font-maven  font-medium '>New Balance 9060</p>
-                <div  className='flex items-center gap-1 '>
-                <Star  className='w-3 ' />
-                <Star  className='w-3 ' />
-                <Star  className='w-3 ' />
-                <Star  className='w-3 ' />
-                <p className='text-gray-900 text-sm   mx-1'>(99)</p>
-                </div>
-
-
-                <p  className='text-gray-500 text-xs'>Men Shoes</p>
-                <p   className='text-gray-500 text-xs' >Grey - Grey - Grey</p>
-
-
-               {/* Price */}
-                <div  className='flex items-center gap-3'>
-                    <p  className='text-gray-900 font-semibold'>€ 125.00</p>
-                    <p  className='text-gray-900 font-normal line-through'>€ 159.99</p>
-                </div>
-            </div>
+    <div className="group w-full bg-white transition-all duration-300   cursor-pointer
+      hover:shadow-[0px_4px_0px_0px_#000]  hover:border hover:border-black">
+      <div className="relative overflow-hidden bg-[#f5f5f5]">
+        <div className="absolute right-2 bottom-2 z-20 flex gap-2  ">
+          <button className="flex h-8 w-8 items-center justify-center cursor-pointer
+          rounded-full bg-black transition hover:scale-105">
+            <Plus className="h-4 w-4 text-white" />
+          </button>
         </div>
+
+        <div className="flex items-center justify-center p-6">
+          <Image
+            src={selectedImage}
+            alt="product-image"
+            className="h-[220px] w-full object-contain transition duration-500 group-hover:scale-105 md:h-[260px]"
+          />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 overflow-x-auto px-4 py-3 scrollbar-hide">
+        {images.map((img, index) => (
+          <button
+            key={index}
+            onClick={() => setSelectedImage(img)}
+            className={`  transition-all duration-300   cursor-pointer 
+              hover:border-b hover:border-black ${ selectedImage === img ? "border-" : "border-transparent"}
+              `}
+              >
+            <Image
+              src={img}
+              alt="preview-image"
+              className="h-14 w-14 object-contain "
+            />
+          </button>
+        ))}
+
+        <p className="ml-1 whitespace-nowrap text-sm text-gray-600">
+          +17
+        </p>
+      </div>
+
+      <div className="px-4 pb-5">
+        <div className="flex items-center gap-1">
+          <Star className="h-3.5 w-3.5 fill-black" />
+          <Star className="h-3.5 w-3.5 fill-black" />
+          <Star className="h-3.5 w-3.5 fill-black" />
+          <Star className="h-3.5 w-3.5 fill-black" />
+          <p className="ml-1 text-sm text-gray-600">
+            (99)
+          </p>
+        </div>
+
+        <h2 className="mt-2 text-[17px] font-semibold text-black">
+          New Balance 9060
+        </h2>
+
+        <p className="mt-1 text-sm text-gray-500">
+          Men's Shoes
+        </p>
+
+        <p className="  text-sm  text-gray-500">
+          Grey - Grey - Grey
+        </p>
+
+        <div className="mt-4 flex items-center gap-3">
+          <p className="text-[17px] font-bold text-black">
+            €125.00
+          </p>
+
+          <p className="text-md text-gray-400 line-through">
+            €159.99
+          </p>
+        </div>
+      </div>
     </div>
   )
 }
 
-export default  React.memo(CegoryProductCard) 
+export default React.memo(CategoryProductCard)

@@ -1,4 +1,4 @@
-import { dekstop_one, dekstop_two,dekstop_three,mobile_one,mobile_two,mobile_three } from '@/images/homeImages'
+import { dekstop_one, dekstop_two,dekstop_three,mobile_one,mobile_two,mobile_three } from '@/images/Images'
 
 
 const sliderData = [

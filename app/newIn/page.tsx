@@ -1,36 +1,48 @@
-import TopProdcut from '@/components/categories/topProdcut'
-import CategoryProductCard from '@/components/common/categoryProductCard'
-import React from 'react'
-
+"use client"
+import TopProdcut from "@/components/product/topProdcut"
+import CategoryProductCard from "@/components/common/categoryProductCard"
+import FilterProduct from "@/components/product/filterProduct"
 const NewIn = () => {
   return (
-      <div className='w-full min-h-screen p-6'>
-      <TopProdcut  />
-    <div  className='flex  mt-6'>
-      {/* left container */}
-      <div  className='w-[20%] h-100 border  hidden lg:block '>
+    <div className="min-h-screen w-full bg-white font-maven">
+      <TopProdcut />
 
-        <h2>Mens Shoes</h2>
+      <div className="px-4 py-6 lg:px-6">
+        <div className="mb-6 flex flex-col gap-4 border-b border-gray-200 pb-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <h1 className="text-3xl font-black  tracking-tight lg:text-[42px]">
+              Men's Shoes
+            </h1>
+
+            <p className="mt-2 text-sm text-gray-600">
+              Showing 1430 results
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-8">
+          <div className="sticky top-5 hidden h-fit w-[300px]  pr-6 lg:block">
+            <h2 className="mb-6 text-2xl font-bold">
+              Refine Results
+            </h2>
+
+        <FilterProduct />
+          </div>
+
+          <div className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-3 xl:grid-cols-4">
+            <CategoryProductCard />
+            <CategoryProductCard />
+            <CategoryProductCard />
+            <CategoryProductCard />
+            <CategoryProductCard />
+            <CategoryProductCard />
+            <CategoryProductCard />
+            <CategoryProductCard />
+          </div>
+        </div>
       </div>
 
-
-
-      {/* Right Container */}
-      <div  
-       className='w-[80%] grid lg:grid-cols-4  grid-cols-1 lg:p-4 gap-4  p-0  ' 
-      >
-
-      <CategoryProductCard />
-      <CategoryProductCard />
-      <CategoryProductCard />
-      <CategoryProductCard />
-      <CategoryProductCard />
-      <CategoryProductCard />
-      <CategoryProductCard />
-      <CategoryProductCard />
-      </div>
-    </div>
-
+    
     </div>
   )
 }

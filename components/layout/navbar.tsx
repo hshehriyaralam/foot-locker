@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { logo } from "@/images/homeImages";
+import { logo } from "@/images/Images";
 import LoginModal from "../common/loginModal";
 
 const Navbar = () => {

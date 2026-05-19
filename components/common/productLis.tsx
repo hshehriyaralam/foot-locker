@@ -52,7 +52,7 @@ const ProductList = ({
   }
 
   return (
-    <div className='w-full'>
+    <div className='w-full  lg:p-8'>
       <div className='mb-5 flex items-center justify-between'>
         <h2 className='font-maven text-[20px] font-semibold text-black lg:text-[34px]'>
           {heading}
