@@ -8,17 +8,24 @@ import {
 
 import product from "@/public/product1.webp"
 import productTwo from "@/public/newAt.webp"
+import { Product } from "@/types/product"
 
-const images = [
-  product,
-  productTwo,
-  product,
-  productTwo,
-]
 
-const CategoryProductCard = () => {
+  // const images = [product, productTwo, product, productTwo];
+
+const CategoryProductCard = ({
+  name,
+  mainCategory,
+  subCategory,
+  color ,
+  price,
+  productImages,
+}:Product) => {
   const [selectedImage, setSelectedImage] =
-    useState(images[0])
+    useState(productImages[0])
+
+
+
 
   return (
     <div className="group w-full bg-white transition-all duration-300   cursor-pointer
@@ -41,7 +48,7 @@ const CategoryProductCard = () => {
       </div>
 
       <div className="flex items-center gap-2 overflow-x-auto px-4 py-3 scrollbar-hide">
-        {images.map((img, index) => (
+        {productImages?.map((img, index) => (
           <button
             key={index}
             onClick={() => setSelectedImage(img)}
@@ -74,24 +81,24 @@ const CategoryProductCard = () => {
         </div>
 
         <h2 className="mt-2 text-[17px] font-semibold text-black">
-          New Balance 9060
+          {name}
         </h2>
 
         <p className="mt-1 text-sm text-gray-500">
-          Men's Shoes
+          {mainCategory} - {subCategory}
         </p>
 
         <p className="  text-sm  text-gray-500">
-          Grey - Grey - Grey
+          {color}
         </p>
 
         <div className="mt-4 flex items-center gap-3">
           <p className="text-[17px] font-bold text-black">
-            €125.00
+            {price}
           </p>
 
           <p className="text-md text-gray-400 line-through">
-            €159.99
+            {price}
           </p>
         </div>
       </div>

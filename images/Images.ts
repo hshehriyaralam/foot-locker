@@ -7,7 +7,7 @@ import mobile_two from  "@/public/hero/hero-mobile-two.webp"
 import mobile_three from  "@/public/hero/hero-mobile-three.webp"
 import overView1 from  "@/public/overview-2.webp"
 import overView2 from  "@/public/overview-1.webp"
-import overView3 from  "@/public/22222222222222222222222222222.webp"
+import overView3 from  "@/public/222.webp"
 import bannerImage from '@/public/banner.webp'
 import fb from '@/public/footer/fb.svg'
 import insta from '@/public/footer/insta.svg'
@@ -29,7 +29,6 @@ import DetailThree from '@/public/productDetails/detailThree.webp'
 import DetailFour from '@/public/productDetails/detailFour.webp'
 import DetailFive from '@/public/productDetails/detailFive.webp'
 import DetailSix from '@/public/productDetails/detailSix.webp'
-
 
 
 

@@ -14,10 +14,16 @@ const Cart = () =>  {
     </div>
 
 
-    <div  className='w-full flex flex-col   lg:flex-row lg:items-center justify-center lg:gap-4  '>
+    <div  className='w-full flex flex-col   lg:flex-row  justify-center lg:gap-4  '>
 
       {/* card history */}
       <div  className='lg:w-[67%]  w-[100%]  min-h-[400px]  flex flex-col items-center gap-4 py-2 '>
+        <OrderProduct />
+        <OrderProduct />
+        <OrderProduct />
+        <OrderProduct />
+        <OrderProduct />
+        <OrderProduct />
         <OrderProduct />
         <OrderProduct />
         <OrderProduct />
@@ -27,7 +33,7 @@ const Cart = () =>  {
 
      
      {/* Payement history */}
-      <div  className='lg:w-[33%]  w-[100%]  min-h-[500px]  flex-col  '>
+      <div  className='lg:w-[33%]    w-[100%]  min-h-[500px]  '>
         <OrderSummary />
         <CheckOutCart />
       </div>
