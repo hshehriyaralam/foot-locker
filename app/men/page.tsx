@@ -1,10 +1,11 @@
 "use client";
 import {  useMemo, useState } from "react";
-import { SlidersHorizontal, X } from "lucide-react";
+import {  SlidersHorizontal, X } from "lucide-react";
 import TopProdcut from "@/components/product/topProdcut";
 import CategoryProductCard from "@/components/common/categoryProductCard";
 import FilterProduct from "@/components/product/filterProduct";
 import { allProducts } from "@/data/allProducts";
+import Link from "next/link";
 
 const Men = () => {
   const [openFilter, setOpenFilter] = useState(false);
@@ -28,17 +29,6 @@ const Men = () => {
       );
     });
   }, [selectedValues]);
-
-
-
-
-
-
-
-
-
-
-
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white font-maven">
       <TopProdcut />
@@ -50,7 +40,7 @@ const Men = () => {
               Men's Shoes
             </h1>
 
-            <p className="mt-2 text-sm text-gray-600">Showing 1430 results</p>
+            <p className="mt-2 text-sm text-gray-600">Showing {filteredProducts.length} results out of {allProducts.length}</p>
           </div>
 
           <button
@@ -77,20 +67,24 @@ const Men = () => {
               filters={sidebarFilters}
               selectedValues={selectedValues}
               setSelectedValues={setSelectedValues}
+              setOpenFilter={setOpenFilter}
+              
               />
             </div>
           </div>
         )}
 
-        <div className="flex gap-8">
-          <div className="sticky top-5 hidden h-fit w-[300px] pr-6 lg:block">
+        <div className="flex gap-8  ">
+          <div className=" hidden  sticky top-5 h-fit w-[300px] pr-6 lg:block">
             <h2 className="mb-6 text-2xl font-bold">Refine Results</h2>
 
             <FilterProduct 
                 filters={sidebarFilters}
-              selectedValues={selectedValues}
-              setSelectedValues={setSelectedValues}
-            />
+                selectedValues={selectedValues}
+                setSelectedValues={setSelectedValues}
+                setOpenFilter={setOpenFilter}
+
+                />
           </div>
 
           <div className="grid flex-1 grid-cols-1 gap-3  lg:grid-cols-3 xl:grid-cols-4">
@@ -98,6 +92,8 @@ const Men = () => {
                 <div
                 key={product.id}
                 >
+                  <Link
+                   href={`/products/${product?.id}`}>
                     <CategoryProductCard
                     name={product.name}
                     productImages={product.image}
@@ -105,7 +101,8 @@ const Men = () => {
                     subCategory={product.subCategory}
                     color={product.color}
                     price={product.price}
-                  />
+                    />
+                    </Link>
                   </div>
               ))
             }

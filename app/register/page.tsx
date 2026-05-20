@@ -1,14 +1,16 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { logo } from "@/images/Images";
-import { useModalStore } from "@/store/store";
 import Image from "next/image";
 import React from "react";
 import { useForm } from "react-hook-form";
+import {  useDispatch } from 'react-redux';
+import {  toggleModal} from '@/store/modalSlice';
 
 const Register = () => {
-  const toggleModal = useModalStore((state: any) => state.toggleModal);
+
+  const dispatch = useDispatch();
+  // const { isOpen } = useSelector((state:any) => state.modal);
 
   const {
     register,
@@ -156,7 +158,7 @@ const Register = () => {
               FLX Member?
               <Button
                 type="button"
-                onClick={toggleModal}
+                onClick={() => dispatch(toggleModal())}
                 className="underline font-medium cursor-pointer bg-transparent text-black shadow-none hover:bg-transparent"
               >
                 Sign In

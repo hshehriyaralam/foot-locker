@@ -7,10 +7,12 @@ const FilterProduct = (
   { filters ,
      selectedValues,
       setSelectedValues,
+      setOpenFilter
      }: 
      { filters: any,
       selectedValues : any,
       setSelectedValues :any
+      setOpenFilter : any
     
     }) => {
   const filterData = [
@@ -36,6 +38,7 @@ const FilterProduct = (
     },
   ]
   const [dropDown, setDropDown] = useState<string | null>("")
+
   const toggleDrown = (title: string) => {
     setDropDown((prev) => (prev === title ? null : title))
   }
@@ -45,6 +48,7 @@ const FilterProduct = (
       if (prev.includes(value)) {
         return prev.filter((item:any) => item !== value)
       }
+      setOpenFilter(false)
       return [...prev, value]
     })
   }

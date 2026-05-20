@@ -5,14 +5,8 @@ import {
   Plus,
   Star,
 } from "lucide-react"
-
-import product from "@/public/product1.webp"
-import productTwo from "@/public/newAt.webp"
 import { Product } from "@/types/product"
-
-
-  // const images = [product, productTwo, product, productTwo];
-
+import Link from "next/link"
 const CategoryProductCard = ({
   name,
   mainCategory,
@@ -28,7 +22,9 @@ const CategoryProductCard = ({
 
 
   return (
-    <div className="group w-full bg-white transition-all duration-300   cursor-pointer
+    <div
+     
+       className="group w-full bg-white transition-all duration-300   cursor-pointer
       hover:shadow-[0px_4px_0px_0px_#000]  hover:border hover:border-black">
       <div className="relative overflow-hidden bg-[#f5f5f5]">
         <div className="absolute right-2 bottom-2 z-20 flex gap-2  ">

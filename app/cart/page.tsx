@@ -34,8 +34,10 @@ const Cart = () =>  {
      
      {/* Payement history */}
       <div  className='lg:w-[33%]    w-[100%]  min-h-[500px]  '>
+     <div  className='w-full  top-10 sticky'>
         <OrderSummary />
         <CheckOutCart />
+      </div>
       </div>
 
 

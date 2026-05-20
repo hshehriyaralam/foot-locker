@@ -1,5 +1,4 @@
 "use client";
-import { useModalStore } from "@/store/store";
 import { CircleUser, Handbag, Menu, Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,10 +6,15 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { logo } from "@/images/Images";
 import LoginModal from "../common/loginModal";
+import { useSelector, useDispatch } from 'react-redux';
+import {  toggleModal} from '@/store/modalSlice';
+
+
+
 
 const Navbar = () => {
-  const modal = useModalStore((state: any) => state.modal);
-  const toggleModal = useModalStore((state: any) => state.toggleModal);
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((state:any) => state.modal);
 
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -66,6 +70,8 @@ const Navbar = () => {
     },
   ];
 
+
+
   return (
     <nav className="w-full border-b  font-maven">
       <div className="flex items-center justify-between lg:px-8  px-4 py-4 font-maven">
@@ -110,7 +116,7 @@ const Navbar = () => {
 
         <div className="flex items-center lg:gap-6">
           <div
-            onClick={toggleModal}
+            onClick={() => dispatch(toggleModal())}
             className="flex items-center gap-2 cursor-pointer  hover:bg-gray-100  py-0.5   px-4 "
           >
             <CircleUser className="w-6 h-6" />
@@ -218,7 +224,7 @@ const Navbar = () => {
 
 
      {/* Login Modal */}
-      {modal &&  <LoginModal />}
+      {isOpen &&  <LoginModal />}
     </nav>
   );
 };

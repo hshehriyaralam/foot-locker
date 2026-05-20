@@ -1,18 +1,20 @@
 "use client"
 import { logo } from '@/images/Images'
-import { useModalStore } from '@/store/store'
 import {  X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'
 import { useRouter } from 'next/navigation'
+import { useSelector, useDispatch } from 'react-redux';
+import {  closeModal , toggleModal} from '@/store/modalSlice';
 
 const LoginModal = () => {
-      const toggleModal = useModalStore((state: any) => state.toggleModal);
+      const dispatch = useDispatch();
       const router = useRouter()
       const navigateRegister =  () => {
         router.push('/register')
-        toggleModal()}
+        dispatch(closeModal())
+    }
   return (
     <section
       className="fixed inset-0 bg-black/40  flex items-center justify-center z-50"
@@ -34,10 +36,8 @@ const LoginModal = () => {
             />
             <div
             className='p-1  cursor-pointer'
-            onClick={toggleModal}
-            >
-                <X  className='w-6 h-6  cursor-pointer' 
-            />
+            onClick={() => dispatch(toggleModal())}>
+                <X  className='w-6 h-6  cursor-pointer'/>
             </div>
             </div>
             </div>
