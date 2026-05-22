@@ -3,13 +3,20 @@ import CheckOutCart from "@/components/cart/checkoutCart";
 import OrderProduct from "@/components/cart/orderProduct";
 import OrderSummary from "@/components/cart/orderSummary";
 import { useSelector, useDispatch } from "react-redux";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Cart = () => {
-  const { items, totalQuantity, totalPrice,removeFromCart } = useSelector(
+    const [isClient, setIsClient] = useState(false);
+  const { items, totalQuantity, totalPrice } = useSelector(
     (state: any) => state.cart,
   );
+
+     useEffect(() => {
+      setIsClient(true);
+    }, []);
+  
+if (!isClient) return <div>Loading...</div>; 
 
   return (
     <section className="w-full min-h-screen  font-maven">
@@ -22,9 +29,23 @@ const Cart = () => {
         <div className="w-full flex flex-col   lg:flex-row  justify-center lg:gap-4  ">
           {/* card history */}
           <div className="lg:w-[67%]  w-[100%]  min-h-[400px]  flex flex-col items-center gap-4 py-2 ">
-            {items?.map((item: any) => (
+            {items.length === 0 ? (
+              <div  className="mt-10  flex flex-col items-center gap-2">
+                <h2  className="font-maven text-black font-semibold">Product not found for Checkout</h2>
+                <Link
+                href={'/men'}
+                  className="bg-black text-white  text-md  hover:bg-black/60 
+                  rounded-none  px-12  py-2  cursor-pointer  "
+                >
+                  Go to Shoping
+                </Link>
+                </div>
+            ) : (
+              <>
+               {items?.map((item: any) => (
               <div key={item.id}>
                 <OrderProduct
+                  id={item.id}
                   name={item.name}
                   price={item.price}
                   color={item.color}
@@ -32,9 +53,13 @@ const Cart = () => {
                   subCaegory={item.mainCategory}
                   Quantity={item.quantity}
                   image={item.image_url[0]}
+
                 />
               </div>
             ))}
+              </>
+            )}
+           
           </div>
 
           {/* Payement history */}

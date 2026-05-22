@@ -2,9 +2,12 @@
 import Image from "next/image";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart } from "@/store/cartSlice";
+
 
 
 const OrderProduct = ({
+  id,
   name,
   price,
   color,
@@ -13,7 +16,9 @@ const OrderProduct = ({
   Quantity,
   image,
 }: 
-  {name : string
+  {
+    id : number,
+    name : string
     price : number
   color : string,
   mainCategory : string
@@ -23,6 +28,9 @@ const OrderProduct = ({
 }
 
 ) => {
+    const dispatch = useDispatch();
+
+  
   
   return (
     <div className="max-w-[800px]  min-h-[200px]  border   flex   font-maven">
@@ -63,6 +71,7 @@ const OrderProduct = ({
             </button>
 
             <button 
+            onClick={() => dispatch(removeFromCart(id))}
             className="underline  tax-xs cursor-pointer">Remove</button>
           </div>
         </div>

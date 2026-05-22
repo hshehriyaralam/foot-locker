@@ -1,33 +1,52 @@
 "use client";
 import {  useMemo, useState } from "react";
-import { SlidersHorizontal, X } from "lucide-react";
+import {  SlidersHorizontal, X } from "lucide-react";
 import TopProdcut from "@/components/product/topProdcut";
 import CategoryProductCard from "@/components/common/categoryProductCard";
 import FilterProduct from "@/components/product/filterProduct";
-import { allProducts } from "@/data/allProducts";
+import { useFetchProductsQuery } from '@/store/services/productApi';
+import CardModal from "@/components/cart/cardModal";
+import { useSelector } from 'react-redux';
+
+
 
 const Kids = () => {
+    const [isClient, setIsClient] = useState(false);
+  const { data : products, isLoading } = useFetchProductsQuery(undefined);
+  const {  cartOpen  } = useSelector((state:any) => state.modal);
+  const [selectedProduct, setSelectedProduct] = useState([])
+
   const [openFilter, setOpenFilter] = useState(false);
   const [selectedValues, setSelectedValues] = useState<string[]>([])
  const sidebarFilters = {
-  brands: [...new Set(allProducts.map((b) => b.brand))],
-  genders: [...new Set(allProducts.map((b) => b.gender))],
-  colors: [...new Set(allProducts.map((c) => c.color))],
-  sizes: [...new Set(allProducts.map((s) => s.size))],
-  price: [...new Set(allProducts.map((s) => s.price))]
+  brands: [...new Set(products?.map((b:any) => b.brand))],
+  genders: [...new Set(products?.map((b:any) => b.gender))],
+  colors: [...new Set(products?.map((c:any) => c.color))],
+  sizes: [...new Set(products?.map((s:any) => s.size))],
+  price: [...new Set(products?.map((s:any) => s.price))]
 };
 
 
-  const filteredProducts = useMemo(() => {
-    if (selectedValues.length === 0) {
-      return allProducts;}
 
-    return allProducts.filter((product) => {
+
+
+
+
+
+  const filteredProducts = useMemo(() => {
+   if( selectedValues.length === 0)  return products
+
+    return products.filter((product:any) => {
       return selectedValues.some((value) =>
         [product.brand,product.gender,product.color,product.size,product.price, ].includes(value)
       );
     });
-  }, [selectedValues]);
+  }, [selectedValues,products]);
+
+
+  
+
+ 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white font-maven">
       <TopProdcut />
@@ -39,7 +58,7 @@ const Kids = () => {
               Men's Shoes
             </h1>
 
-            <p className="mt-2 text-sm text-gray-600">Showing {filteredProducts.length} results out of {allProducts.length}</p>
+            <p className="mt-2 text-sm text-gray-600">Showing {filteredProducts?.length} results out of {products?.length}</p>
           </div>
 
           <button
@@ -87,24 +106,27 @@ const Kids = () => {
           </div>
 
           <div className="grid flex-1 grid-cols-1 gap-3  lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProducts?.map((product) => (
-                <div
-                key={product.id}
-                >
+            {filteredProducts?.map((product:any) => (
+                <div key={product.id}>
+                  <div>
                     <CategoryProductCard
-                    name={product.name}
-                    productImages={product.image}
-                    mainCategory={product.mainCategory}
-                    subCategory={product.subCategory}
-                    color={product.color}
-                    price={product.price}
-                  />
+                    product={product}
+                    setSelectedProduct={setSelectedProduct}/>
+                    </div>
                   </div>
               ))
             }
           
           </div>
+
+       
+
+
         </div>
+           
+        {cartOpen &&  <CardModal  selectedProduct={selectedProduct}   />}
+              
+         
       </div>
     </div>
   );

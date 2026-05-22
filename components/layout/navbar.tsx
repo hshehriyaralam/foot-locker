@@ -2,7 +2,7 @@
 import { CircleUser, Handbag, Menu, Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { logo } from "@/images/Images";
 import LoginModal from "../common/loginModal";
@@ -13,6 +13,7 @@ import {  toggleModal} from '@/store/modalSlice';
 
 
 const Navbar = () => {
+  const [isClient, setIsClient] = useState(false);
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state:any) => state.modal);
     const {  totalQuantity  } = useSelector((state:any) => state.cart);
@@ -73,7 +74,12 @@ const Navbar = () => {
   ];
 
 
+    useEffect(() => {
+    setIsClient(true);
+  }, []);
 
+
+if (!isClient) return <div>Loading...</div>; 
   return (
     <nav className="w-full border-b  font-maven">
       <div className="flex items-center justify-between lg:px-8  px-4 py-4 font-maven">

@@ -1,14 +1,6 @@
 "use client";
 import BreadCrumb from "@/components/common/breadCrumb";
 import React, { useState } from "react";
-import {
-  DetailOne,
-  DetailTwo,
-  DetailThree,
-  DetailFour,
-  DetailFive,
-  DetailSix,
-} from "@/images/Images";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ProductDescription from "@/components/product/productDescription";
@@ -16,22 +8,33 @@ import ProductLis from "@/components/common/productLis";
 import { seaonalRefresh } from "@/data/productData";
 import { useParams } from "next/navigation";
 import { useSingleProductQuery } from "@/store/services/productApi";
+import ModalAddtoCard from "@/components/cart/modalAddtoCard";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/store/cartSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { data: product, isLoading, isError } = useSingleProductQuery(id);
+  const { data: product } = useSingleProductQuery(id);
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
-
+  const [showModal, setShowModal] = useState(false)
   const selectSize = (size: number) => {
     setSelectedSize((prev: any) => (prev === size ? null : size));
   };
+  const dispatch = useDispatch();
+
+     const handleAddToCart = () => {
+        dispatch(addToCart(product));
+        setShowModal(true)
+      };
+
+
   return (
     <div className="w-full min-h-screen p-4  font-maven">
       <div className="relative left-0 py-4 ">
         <BreadCrumb />
       </div>
       <div className="w-full   flex  lg:flex-row flex-col  gap-2 ">
-        <div className="lg:w-[62%]  hidden lg:grid   grid-cols-2  gap-4">
+        <div className="lg:w-[67%]  hidden lg:grid   grid-cols-2  gap-4">
           {product?.image_url?.map((img: any) => (
             <div key={Math.random()} className="bg-gray-100  p-3">
               <Image width={350} height={350} src={img} alt="Details_Page" />
@@ -39,7 +42,7 @@ const ProductDetails = () => {
           ))}
         </div>
 
-        <div className="lg:w-[62%] w-[100%] lg:hidden block">
+        <div className=" w-[100%] lg:hidden block">
           {product?.image_url?.slice(0, 1).map((img: any) => (
             <div key={Math.random()} className="bg-gray-100  p-3">
               <Image src={img} width={350} height={350} alt="Details_Page" />
@@ -47,7 +50,7 @@ const ProductDetails = () => {
           ))}
         </div>
 
-        <div className="lg:w-[38%]  w-[100%] p-4 flex flex-col gap-3">
+        <div className="lg:w-[33%]  w-[100%] p-4 flex flex-col gap-3">
           <h2 className="text-3xl font-black  tracking-tight lg:text-[28px]">
             {product?.name}
             {/* Nike Air Max Tuned 1 */}
@@ -93,6 +96,7 @@ const ProductDetails = () => {
           </div>
 
           <Button
+           onClick={handleAddToCart}
             className="bg-black text-white  text-md  w-full hover:bg-black/60   rounded-none h-14
             cursor-pointer
             "
@@ -101,6 +105,11 @@ const ProductDetails = () => {
           </Button>
         </div>
       </div>
+
+      {showModal && <ModalAddtoCard
+      product={product}
+      setShowModal={setShowModal}
+      />}
 
       <ProductDescription />
 

@@ -11,9 +11,9 @@ import { useSelector } from 'react-redux';
 
 
 const Men = () => {
+    const [isClient, setIsClient] = useState(false);
   const { data : products, isLoading } = useFetchProductsQuery(undefined);
   const {  cartOpen  } = useSelector((state:any) => state.modal);
-  const {  items  } = useSelector((state:any) => state.cart);
   const [selectedProduct, setSelectedProduct] = useState([])
 
   const [openFilter, setOpenFilter] = useState(false);
@@ -27,7 +27,7 @@ const Men = () => {
 };
 
 
-console.log(items, "add to cart product  from men page")
+
 
 
 
