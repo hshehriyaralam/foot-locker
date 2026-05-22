@@ -5,7 +5,7 @@ import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'
 import { useRouter } from 'next/navigation'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {  closeModal , toggleModal} from '@/store/modalSlice';
 
 const LoginModal = () => {

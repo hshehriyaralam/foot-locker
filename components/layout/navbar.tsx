@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { CircleUser, Handbag, Menu, Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +15,8 @@ import {  toggleModal} from '@/store/modalSlice';
 const Navbar = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state:any) => state.modal);
+    const {  totalQuantity  } = useSelector((state:any) => state.cart);
+  
 
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -132,7 +134,8 @@ const Navbar = () => {
               className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full
            w-4 h-4 flex items-center justify-center  text-[10px]"
             >
-              0
+              {totalQuantity} 
+              {/* 1 */}
             </span>
           </Link>
         </div>

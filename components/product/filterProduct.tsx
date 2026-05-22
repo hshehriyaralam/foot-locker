@@ -24,10 +24,10 @@ const FilterProduct = (
       title: "Gender",
       options: filters.genders,
     },
-    {
-      title: "Size",
-      options: filters.sizes,
-    },
+    // {
+    //   title: "Size",
+    //   options: filters.sizes,
+    // },
     {
       title: "Color",
       options: filters.colors,
@@ -37,6 +37,7 @@ const FilterProduct = (
       options: filters.price,
     },
   ]
+
   const [dropDown, setDropDown] = useState<string | null>("")
 
   const toggleDrown = (title: string) => {
