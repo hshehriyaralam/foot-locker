@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 
 
 const Kids = () => {
-    const [isClient, setIsClient] = useState(false);
   const { data : products, isLoading } = useFetchProductsQuery(undefined);
   const {  cartOpen  } = useSelector((state:any) => state.modal);
   const [selectedProduct, setSelectedProduct] = useState([])

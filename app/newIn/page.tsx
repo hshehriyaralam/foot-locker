@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 
 
 const NewIn = () => {
-    const [isClient, setIsClient] = useState(false);
   const { data : products, isLoading } = useFetchProductsQuery(undefined);
   const {  cartOpen  } = useSelector((state:any) => state.modal);
   const [selectedProduct, setSelectedProduct] = useState([])
@@ -133,3 +132,100 @@ const NewIn = () => {
 };
 
 export default NewIn;
+
+
+
+
+
+
+
+
+
+// "use client";
+
+// import { Provider } from "react-redux";
+// import { store } from "@/redux/store";
+
+// export default function Providers({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return <Provider store={store}>{children}</Provider>;
+// }
+
+// "use client";
+
+// import { Provider } from "react-redux";
+// import { store } from "@/redux/store";
+
+// export default function Providers({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return <Provider store={store}>{children}</Provider>;
+// }
+// import Providers from "./providers";
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <Providers>{children}</Providers>
+//       </body>
+//     </html>
+//   );
+// }
+
+
+
+
+
+
+
+// import Providers from "./providers";
+// import AuthProvider from "@/components/AuthProvider";
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <Providers>
+//           <AuthProvider>{children}</AuthProvider>
+//         </Providers>
+//       </body>
+//     </html>
+//   );
+// }
+
+
+
+// "use client";
+
+// import { useSelector } from "react-redux";
+// import { RootState } from "@/redux/store";
+
+// export default function Profile() {
+//   const { user, profile, loading } = useSelector(
+//     (state: RootState) => state.user
+//   );
+
+//   if (loading) return <p>Loading...</p>;
+
+//   return (
+//     <div>
+//       <h1>{profile?.name}</h1>
+//       <p>{user?.email}</p>
+//     </div>
+//   );
+// }
+

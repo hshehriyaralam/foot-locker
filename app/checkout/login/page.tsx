@@ -3,70 +3,72 @@ import { logo } from "@/images/Images";
 import { X } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
-import { Button } from "../ui/button";
+
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { closeModal, toggleModal } from "@/store/modalSlice";
 import { useForm } from "react-hook-form";
 import { handleLogin } from "@/lib/helper/loginHandler";
 import { toast } from "sonner";
-import { Spinner } from "../ui/spinner";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
-const LoginModal = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
 
-  const onSubmit = async (data: any) => {
-    const email = data?.email;
-    const password = data?.password;
-    await handleLogin({
-      email,
-      password,
-      reset,
-      router,
-      toast,
-      dispatch,
-      setLoading,
-    });
-  };
+const CheckoutLogin = () => {
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+    const supabase = getSupabaseBrowserClient();
 
-  const navigateRegister = () => {
-    router.push("/register");
-    dispatch(closeModal());
-  };
+        const {
+          register,
+          handleSubmit,
+          formState: { errors },
+          reset,
+        } = useForm();
+          const onSubmit = async (data: any) => {
 
+            const email = data?.email;
+            const password = data?.password;
+            try{
+              setLoading(true)
+                  const { data: user, error: loginError } = await  supabase.auth.signInWithPassword({
+                  email : email,
+                  password : password,
+                })
+
+                  if(loginError?.message === "Invalid login credentials"){
+                console.log("Email Or Password wasn't correct!")
+                setLoading(false)
+                return
+              }
+
+            if (loginError) {
+              console.log("error", loginError.message)
+              setLoading(false)
+              throw new Error
+            }
+            setLoading(false)
+            router.replace('/checkout')
+            }catch(error){
+              console.log(error)
+            }
+          };
+        
+    
   return (
-    <section className="fixed inset-0 bg-black/40  flex items-center justify-center z-50">
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="bg-white   w-[450px] shadow-xl animate-fadeIn"
-      >
-        <div className="flex flex-col items-center justify-center gap-4 ">
-          {/* Top */}
-          <div className="pb-2  w-full  border-b-2  border-gray-300 ">
-            <div className=" flex items-center justify-between px-4 py-3 ">
-              <Image src={logo} alt="logo" className="w-40" />
-              <div
-                className="p-1  cursor-pointer"
-                onClick={() => dispatch(toggleModal())}
-              >
-                <X className="w-6 h-6  cursor-pointer" />
-              </div>
-            </div>
-          </div>
+    <div className='w-full min-h-screen font-maven  '> 
 
+    <div  className="lg:w-[30%]  w-[80%] mx-auto  p-4  mt-6">
+
+
+    <div className="flex flex-col items-center justify-center gap-2 ">
           {/* center  */}
-          <div className="px-4">
+          <div className="">
             <h2 className="text-black font-maven text-2xl font-semibold  ">
-              Sign in or join FLX Rewards(it’s free!) and get perks like
+              Sign in 
             </h2>
+            <p  className="text-gray-800 lg:text-md text-[14px] mt-2 ">Sign in to secure free shipping and earn points on this order with FLX Membership</p>
           </div>
 
           {/* Bottom */}
@@ -103,7 +105,7 @@ const LoginModal = () => {
               </Button>
               <Button
                 type="button"
-                onClick={navigateRegister}
+                onClick={() => router.push('/register')}
                 className="bg-white  text-black   font-maven h-12 border border-gray-600  rounded-none p-2  cursor-pointer  text-md 
                     shadow-[5px_5px_0px_0px_#EC4899]  text-center  hover:shadow-[7px_7px_0px_0px_#EC4899] 
                     "
@@ -113,9 +115,9 @@ const LoginModal = () => {
             </div>
           </form>
         </div>
-      </div>
-    </section>
-  );
-};
+            </div>
+    </div>
+  )
+}
 
-export default React.memo(LoginModal);
+export default CheckoutLogin

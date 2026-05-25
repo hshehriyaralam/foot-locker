@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartModal } from "@/store/modalSlice";
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -9,10 +9,14 @@ import { addToCart } from "@/store/cartSlice";
 import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import product from "@/public/newAt.webp"
+
 
 const CardModal = ({ selectedProduct }: any) => {
   const [stepOne, setStepOne] = useState(false);
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
+    const {  totalQuantity  } = useSelector((state:any) => state.cart)
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -37,6 +41,10 @@ const CardModal = ({ selectedProduct }: any) => {
       document.body.style.overflow = "auto";
     };
   }, []);
+
+
+
+  
 
   return (
     <div className="">
@@ -81,7 +89,7 @@ const CardModal = ({ selectedProduct }: any) => {
                   className="bg-gray-100 p-5  h-[250px]  w-[80%] mx-auto "
                 >
                   <Image
-                    src={selectedProduct.image_url[0]}
+                    src={selectedProduct.image_url[0] || product }
                     width={250}
                     height={250}
                     alt="Details_Page"
@@ -176,12 +184,12 @@ const CardModal = ({ selectedProduct }: any) => {
                     className="w-full bg-black text-white  text-md   hover:bg-black/60 
                                     rounded-none h-12 cursor-pointer"
                   >
-                    View Bag (6 items)
+                    View Bag ({totalQuantity} items)
                   </Button>
 
                   <Link className="w-full" href={"/checkout"}>
                     <Button
-                      onClick={navigateTocart}
+
                       className="w-full bg-transparent text-black border border-black
                                      hover:shadow-[3px_3px_0px_0px_#9CA3AF]
                                     rounded-none h-11 cursor-pointer  text-md font-medium"

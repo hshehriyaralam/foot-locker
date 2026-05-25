@@ -13,10 +13,9 @@ import {  toggleModal} from '@/store/modalSlice';
 
 
 const Navbar = () => {
-  const [isClient, setIsClient] = useState(false);
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state:any) => state.modal);
-    const {  totalQuantity  } = useSelector((state:any) => state.cart);
+    const {  totalQuantity  } = useSelector((state:any) => state.cart)
   
 
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -74,12 +73,7 @@ const Navbar = () => {
   ];
 
 
-    useEffect(() => {
-    setIsClient(true);
-  }, []);
 
-
-if (!isClient) return <div>Loading...</div>; 
   return (
     <nav className="w-full border-b  font-maven">
       <div className="flex items-center justify-between lg:px-8  px-4 py-4 font-maven">

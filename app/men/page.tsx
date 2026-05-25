@@ -1,52 +1,55 @@
 "use client";
-import {  useMemo, useState } from "react";
-import {  SlidersHorizontal, X } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { SlidersHorizontal, X } from "lucide-react";
 import TopProdcut from "@/components/product/topProdcut";
 import CategoryProductCard from "@/components/common/categoryProductCard";
 import FilterProduct from "@/components/product/filterProduct";
-import { useFetchProductsQuery } from '@/store/services/productApi';
+import { useFetchProductsQuery } from "@/store/services/productApi";
 import CardModal from "@/components/cart/cardModal";
-import { useSelector } from 'react-redux';
-
+import { useSelector } from "react-redux";
+import Loader from "@/components/common/loader";
+import { GetUser } from "@/hooks/getUser";
+import { useRouter } from "next/navigation";
 
 
 const Men = () => {
-    const [isClient, setIsClient] = useState(false);
-  const { data : products, isLoading } = useFetchProductsQuery(undefined);
-  const {  cartOpen  } = useSelector((state:any) => state.modal);
-  const [selectedProduct, setSelectedProduct] = useState([])
+  const router = useRouter()
+  const { data: products, isLoading } = useFetchProductsQuery(undefined);
+  const { cartOpen } = useSelector((state: any) => state.modal);
+  const [selectedProduct, setSelectedProduct] = useState([]);
+  
 
   const [openFilter, setOpenFilter] = useState(false);
-  const [selectedValues, setSelectedValues] = useState<string[]>([])
- const sidebarFilters = {
-  brands: [...new Set(products?.map((b:any) => b.brand))],
-  genders: [...new Set(products?.map((b:any) => b.gender))],
-  colors: [...new Set(products?.map((c:any) => c.color))],
-  sizes: [...new Set(products?.map((s:any) => s.size))],
-  price: [...new Set(products?.map((s:any) => s.price))]
-};
-
-
-
-
-
-
-
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const sidebarFilters = {
+    brands: [...new Set(products?.map((b: any) => b.brand))],
+    genders: [...new Set(products?.map((b: any) => b.gender))],
+    colors: [...new Set(products?.map((c: any) => c.color))],
+    sizes: [...new Set(products?.map((s: any) => s.size))],
+    price: [...new Set(products?.map((s: any) => s.price))],
+  };
 
   const filteredProducts = useMemo(() => {
-   if( selectedValues.length === 0)  return products
+    if (selectedValues.length === 0) return products;
 
-    return products.filter((product:any) => {
+    return products.filter((product: any) => {
       return selectedValues.some((value) =>
-        [product.brand,product.gender,product.color,product.size,product.price, ].includes(value)
+        [
+          product.brand,
+          product.gender,
+          product.color,
+          product.size,
+          product.price,
+        ].includes(value),
       );
     });
-  }, [selectedValues,products]);
+  }, [selectedValues, products]);
 
 
   
 
- 
+  
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white font-maven">
       <TopProdcut />
@@ -58,7 +61,10 @@ const Men = () => {
               Men's Shoes
             </h1>
 
-            <p className="mt-2 text-sm text-gray-600">Showing {filteredProducts?.length} results out of {products?.length}</p>
+            <p className="mt-2 text-sm text-gray-600">
+              Showing {filteredProducts?.length} results out of{" "}
+              {products?.length}
+            </p>
           </div>
 
           <button
@@ -82,11 +88,10 @@ const Men = () => {
               </div>
 
               <FilterProduct
-              filters={sidebarFilters}
-              selectedValues={selectedValues}
-              setSelectedValues={setSelectedValues}
-              setOpenFilter={setOpenFilter}
-              
+                filters={sidebarFilters}
+                selectedValues={selectedValues}
+                setSelectedValues={setSelectedValues}
+                setOpenFilter={setOpenFilter}
               />
             </div>
           </div>
@@ -96,37 +101,36 @@ const Men = () => {
           <div className=" hidden  sticky top-5 h-fit w-[300px] pr-6 lg:block">
             <h2 className="mb-6 text-2xl font-bold">Refine Results</h2>
 
-            <FilterProduct 
-                filters={sidebarFilters}
-                selectedValues={selectedValues}
-                setSelectedValues={setSelectedValues}
-                setOpenFilter={setOpenFilter}
-
-                />
+            <FilterProduct
+              filters={sidebarFilters}
+              selectedValues={selectedValues}
+              setSelectedValues={setSelectedValues}
+              setOpenFilter={setOpenFilter}
+            />
           </div>
 
-          <div className="grid flex-1 grid-cols-1 gap-3  lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProducts?.map((product:any) => (
+          {isLoading ? (
+            <div className="flex items-center justify-center  w-full  ">
+              <Loader />
+            </div>
+          ) : (
+            <div className="grid flex-1 grid-cols-1 gap-3  lg:grid-cols-3 xl:grid-cols-4  ">
+              {filteredProducts?.map((product: any) => (
                 <div key={product.id}>
-                  <div>
+                  <div className="">
                     <CategoryProductCard
-                    product={product}
-                    setSelectedProduct={setSelectedProduct}/>
-                    </div>
+                      product={product}
+                      setSelectedProduct={setSelectedProduct}
+                    />
                   </div>
-              ))
-            }
-          
-          </div>
-
-       
-
-
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-           
-        {cartOpen &&  <CardModal  selectedProduct={selectedProduct}   />}
-              
-         
+
+        {cartOpen && <CardModal 
+        selectedProduct={selectedProduct} />}
       </div>
     </div>
   );

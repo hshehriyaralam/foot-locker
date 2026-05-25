@@ -2,13 +2,16 @@
 import { Button } from "@/components/ui/button";
 import { logo } from "@/images/Images";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {  useDispatch } from 'react-redux';
 import {  toggleModal} from '@/store/modalSlice';
+import { handleSignUp } from "@/lib/helper/signUpHandler";
+import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
 
 const Register = () => {
-
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch();
   // const { isOpen } = useSelector((state:any) => state.modal);
 
@@ -16,24 +19,18 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit =  async  (data: any) => {
     const firstName = data?.firstName;
     const lastName = data?.lastName;
     const email = data?.email;
-    const mobileNumber = data?.mobileNumber;
+    const phoneNumber = data?.mobileNumber;
     const postalCode = data?.postalCode;
     const password = data?.password;
-
-    console.log(
-      firstName,
-      lastName,
-      email,
-      mobileNumber,
-      postalCode,
-      password
-    );
+    const name = firstName +  lastName
+    await handleSignUp({ firstName, name, lastName,  email, password, postalCode, phoneNumber, reset,setLoading, toast});
   };
 
   const inputStyling = `
@@ -150,8 +147,10 @@ const Register = () => {
 
 
           <div className="mx-auto flex flex-col items-center gap-4 pt-4 w-full">
-            <Button className="bg-black text-white w-full sm:w-72 h-12 rounded-none text-sm sm:text-base font-maven cursor-pointer">
-              Join FLX Membership
+            <Button className="bg-black text-white w-full w-72 h-12 rounded-none text-sm 
+            text-base font-maven cursor-pointer">
+              {loading  ? <Spinner  className="w-6 h-6 text-gray-400" />   : " Join FLX Membership"}
+             
             </Button>
 
             <p className="text-sm font-bold text-center">
@@ -161,7 +160,8 @@ const Register = () => {
                 onClick={() => dispatch(toggleModal())}
                 className="underline font-medium cursor-pointer bg-transparent text-black shadow-none hover:bg-transparent"
               >
-                Sign In
+                
+                Sign In  
               </Button>
             </p>
 
