@@ -67,7 +67,7 @@ const userSlice = createSlice({
     builder
       .addCase(fetchUserProfile.pending, (state) => {
         state.loading = true;
-        state.error = null;
+        state.error = null
       })
 
       .addCase(fetchUserProfile.fulfilled, (state, action) => {

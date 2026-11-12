@@ -1,43 +1,38 @@
-
 import { closeModal } from "@/store/modalSlice";
 import { getSupabaseBrowserClient } from "../supabase/client";
+import { fetchUserProfile } from "@/store/userSlice";  
 
 export const handleLogin = async ({
-  email,
-  password,
-  reset,
-   router,
-   toast,
-   dispatch,
-   setLoading
+  email, password, reset, router, toast, dispatch, setLoading,
 }: any) => {
   const supabase = getSupabaseBrowserClient();
   try {
-    setLoading(true)
-    const { data: user, error: loginError } = await  supabase.auth.signInWithPassword({
-       email : email,
-        password : password,
-      })
+    setLoading(true);
 
-      if(loginError?.message === "Invalid login credentials"){
-        toast.error("Email Or Password wasn't correct!", {position  : "top-center"})
-        return
-      }
+    const { data, error: loginError } =
+      await supabase.auth.signInWithPassword({ email, password });
 
+    setLoading(false);
+
+    if (loginError?.message === "Invalid login credentials") {
+      toast.error("Email Or Password wasn't correct!", { position: "top-center" });
+      return;
+    }
     if (loginError) {
-       console.log("error", loginError.message)
-       throw new Error
+      toast.error(loginError.message, { position: "top-center" });
+      return;
     }
+
     
-    setLoading(false)
-    toast.success("Successfully Login", {position  : "top-center"})
-    router.replace('/')
-    router.refresh()
-    dispatch(closeModal())
+    await dispatch(fetchUserProfile());
+
+    toast.success("Successfully Login", { position: "top-center" });
+    router.replace("/");
+    router.refresh();
+    dispatch(closeModal());
     reset();
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.log("catch Error", error?.message);
-    }
+  } catch (error) {
+    setLoading(false);
+    if (error instanceof Error) console.log(error.message);
   }
 };

@@ -38,7 +38,7 @@ const CheckoutLogin = () => {
                 })
 
                   if(loginError?.message === "Invalid login credentials"){
-                console.log("Email Or Password wasn't correct!")
+                toast.error("Email Or Password wasn't correct!", {position : "top-center"})
                 setLoading(false)
                 return
               }

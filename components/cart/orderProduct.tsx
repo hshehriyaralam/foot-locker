@@ -65,11 +65,7 @@ const OrderProduct = ({
           </div>
           <p className="text-[#515151] text-xs">Excluded from discount </p>
 
-          <div className="flex items-center gap-x-4  text-xs">
-            <button className="underline  tax-xs  cursor-pointer">
-              Save for later
-            </button>
-
+          <div className="text-xs">
             <button 
             onClick={() => dispatch(removeFromCart(id))}
             className="underline  tax-xs cursor-pointer">Remove</button>

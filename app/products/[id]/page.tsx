@@ -11,22 +11,30 @@ import { useSingleProductQuery } from "@/store/services/productApi";
 import ModalAddtoCard from "@/components/cart/modalAddtoCard";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
+import { toast } from "sonner"; // ✅ Toast import kiya
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { data: product } = useSingleProductQuery(id);
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  
   const selectSize = (size: number) => {
     setSelectedSize((prev: any) => (prev === size ? null : size));
   };
   const dispatch = useDispatch();
 
-     const handleAddToCart = () => {
-        dispatch(addToCart(product));
-        setShowModal(true)
-      };
+  const handleAddToCart = () => {
+    // ✅ Validation: Agar size select nahi hai toh error show karo
+    if (!selectedSize) {
+      toast.error("Please select a size first!", { position: "top-center" });
+      return; // Function ko yahin rok do, cart me add mat karo
+    }
 
+    // Size select hai, toh cart me add karo
+    dispatch(addToCart({ ...product, size: selectedSize })); // Size bhi pass kar rahe hain
+    setShowModal(true);
+  };
 
   return (
     <div className="w-full min-h-screen p-4  font-maven">
@@ -53,26 +61,20 @@ const ProductDetails = () => {
         <div className="lg:w-[33%]  w-[100%] p-4 flex flex-col gap-3">
           <h2 className="text-3xl font-black  tracking-tight lg:text-[28px]">
             {product?.name}
-            {/* Nike Air Max Tuned 1 */}
           </h2>
 
           <div className="text-sm">
             <p className="text-gray-700 ">
               {product?.mainCategory} {product?.subCategory}
-              {/* Men Shoes */}
             </p>
-            <p
-              className="text-gray-900 underline  font-medium  
-              cursor-pointer  "
-            >
+            <p className="text-gray-900 underline  font-medium cursor-pointer">
               Explore {product?.brand}
             </p>
           </div>
 
           <div>
             <p className="text-[16px] font-medium  ">
-              <span className="text-[#BA031D]  ">{product?.price} Ft</span> VAT
-              included
+              <span className="text-[#BA031D]  ">{product?.price} Ft</span> VAT included
             </p>
           </div>
 
@@ -96,28 +98,26 @@ const ProductDetails = () => {
           </div>
 
           <Button
-           onClick={handleAddToCart}
-            className="bg-black text-white  text-md  w-full hover:bg-black/60   rounded-none h-14
-            cursor-pointer
-            "
+            onClick={handleAddToCart}
+            className="bg-black text-white  text-md  w-full hover:bg-black/60   rounded-none h-14 cursor-pointer"
           >
             Add to bag
           </Button>
         </div>
       </div>
 
-      {showModal && <ModalAddtoCard
-      product={product}
-      setShowModal={setShowModal}
-      />}
+      {showModal && (
+        <ModalAddtoCard
+          product={product}
+          setShowModal={setShowModal}
+        />
+      )}
 
       <ProductDescription />
-
-      <section className="w-full px-4 py-8 lg:px-10  mx-auto   ">
+      <section className="w-full px-4 py-8 lg:px-10  mx-auto">
         <ProductLis data={seaonalRefresh} heading="Complete the Look" />
       </section>
-
-      <section className="w-full px-4 py-8 lg:px-10  mx-auto   ">
+      <section className="w-full px-4 py-8 lg:px-10  mx-auto">
         <ProductLis data={seaonalRefresh} heading="Recently Viewed" />
       </section>
     </div>

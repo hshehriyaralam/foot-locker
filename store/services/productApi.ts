@@ -8,7 +8,7 @@ import { createApi,  fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productApi = createApi({
   reducerPath: "productApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_CORS_ORIGIN}/api/` }),
   tagTypes : ["Product"],
   
 
